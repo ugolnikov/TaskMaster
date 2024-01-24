@@ -1,3 +1,6 @@
 # TaskMaster
  
-v1 24.01.2024 - Полина не зарегалась
+Install Pillow with pip:
+
+python -m pip install --upgrade pip
+python -m pip install --upgrade Pillow
