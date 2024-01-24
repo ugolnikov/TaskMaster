@@ -3,24 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask App with Database</title>
+    <title>Registration</title>
 </head>
 <body>
-    <h1>Users</h1>
-    <ul>
-        {% for user in users %}
-            <li>{{ user.username }} - {{ user.email }}</li>
-        {% endfor %}
-    </ul>
-
-    <h2>Add User</h2>
-    <form method="post">
+    <h2>Registration</h2>
+    <form method="post" action="{{ url_for('register') }}">
         {{ form.hidden_tag() }}
         <p>{{ form.username.label }} {{ form.username(size=20) }}</p>
         <p>{{ form.email.label }} {{ form.email(size=30) }}</p>
         <p>{{ form.password.label }} {{ form.password(size=30) }}</p>
         <p>{{ form.confirm_password.label }} {{ form.confirm_password(size=30) }}</p>
         <p>{{ form.submit() }}</p>
+        <button type="submit">Register</button>
     </form>
 </body>
 </html>

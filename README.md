@@ -7,6 +7,7 @@ python -m pip install --upgrade Pillow <br>
 pip install Flask <br>
 pip install Flask-SQLAlchemy <br>
 pip install Flask-WTF <br>
+pip install flask-bcrypt <br>
 
 
 
