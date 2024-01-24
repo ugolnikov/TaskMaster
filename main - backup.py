@@ -88,31 +88,31 @@ class TaskMasterApp:
         btn_settings.pack(pady=10)
         btn_logout.pack(pady=10)
 
-    def tasks_page(self):
-        self.clear_frame()
-        self.root.geometry("500x300")
-        self.root.title("Tasks")
+    # def tasks_page(self):
+    #     self.clear_frame()
+    #     self.root.geometry("500x300")
+    #     self.root.title("Tasks")
 
-        # Получаем список задач для текущего пользователя из базы данных
-        tasks = self.get_user_tasks()
+    #     # Получаем список задач для текущего пользователя из базы данных
+    #     tasks = self.get_user_tasks()
 
-        # Создаем список задач
-        task_listbox = tk.Listbox(self.root, width=40, height=10)
-        for task in tasks:
-            task_listbox.insert(tk.END, task)
+    #     # Создаем список задач
+    #     task_listbox = tk.Listbox(self.root, width=40, height=10)
+    #     for task in tasks:
+    #         task_listbox.insert(tk.END, task)
 
-        # Добавляем элементы управления
-        btn_add_task = tk.Button(self.root, text="Add Task", command=self.add_task)
-        btn_edit_task = tk.Button(self.root, text="Edit Task", command=lambda: self.edit_task(task_listbox))
-        btn_delete_task = tk.Button(self.root, text="Delete Task", command=lambda: self.delete_task(task_listbox))
-        btn_back = tk.Button(self.root, text="Back", command=self.menu_page)
+    #     # Добавляем элементы управления
+    #     btn_add_task = tk.Button(self.root, text="Add Task", command=self.add_task)
+    #     btn_edit_task = tk.Button(self.root, text="Edit Task", command=lambda: self.edit_task(task_listbox))
+    #     btn_delete_task = tk.Button(self.root, text="Delete Task", command=lambda: self.delete_task(task_listbox))
+    #     btn_back = tk.Button(self.root, text="Back", command=self.menu_page)
 
-        # Отображаем элементы
-        task_listbox.pack(pady=10)
-        btn_add_task.pack(pady=5)
-        btn_edit_task.pack(pady=5)
-        btn_delete_task.pack(pady=5)
-        btn_back.pack(pady=10)
+    #     # Отображаем элементы
+    #     task_listbox.pack(pady=10)
+    #     btn_add_task.pack(pady=5)
+    #     btn_edit_task.pack(pady=5)
+    #     btn_delete_task.pack(pady=5)
+    #     btn_back.pack(pady=10)
 
     def friends_page(self):
         self.clear_frame()
