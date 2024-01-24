@@ -11,13 +11,14 @@ def goto(module_name):
     
 
 root = tk.Tk()
+root.iconbitmap("1.ico")
 frame = tk.Frame(root)
-frame.grid()
+frame.pack()
 root.title("Главное меню")
 root.geometry("200x300")
-tk.Button(frame, text="Авторизация", command=lambda: goto("auth")).grid(column=1,row=0)
-tk.Button(frame, text="Регистрация", command=root.destroy).grid(column=1,row=1)
-tk.Button(frame, text="Выход", command=root.destroy).grid(column=1,row=2)
+tk.Button(frame, text="Авторизация", command=lambda: goto("auth")).pack(side="top",fill="x", pady=30)
+tk.Button(frame, text="Регистрация", command=lambda: goto("register")).pack(side="top",fill="x", pady=30)
+tk.Button(frame, text="Выход", command=root.destroy).pack(side="top",fill="x", pady=30)
 
 
 
