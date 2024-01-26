@@ -1,26 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Task List</title>
-</head>
-<body>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".delete-btn").click(function () {
+          var taskId = $(this).data("task-id");
+          $.ajax({
+            url: "/delete_task/" + taskId,
+            type: "DELETE",
+            success: function (data) {
+              location.reload();
+            },
+          });
+        });
+
+        $(".complete-btn").click(function () {
+          var taskId = $(this).data("task-id");
+          $.ajax({
+            url: "/complete_task/" + taskId,
+            type: "POST",
+            success: function (data) {
+              location.reload();
+            },
+          });
+        });
+
+        $(".task-item").dblclick(function () {
+          var taskId = $(this).data("task-id");
+          var taskTextElement = $(this).find(".task-text");
+
+          var editedTask = prompt("Edit Task", taskTextElement.text());
+          if (editedTask !== null) {
+            $.post(
+              "/edit_task/" + taskId,
+              { edited_task: editedTask },
+              function (data) {
+                location.reload();
+              }
+            );
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
     <h1>Task List</h1>
-    
+
     <ul>
-        {% for task in tasks %}
-            <li>{{ task[0] }}</li>
-        {% endfor %}
+      {% for task in tasks %}
+      <li class="task-item" data-task-id="{{ task[1] }}">
+        <span class="task-text{% if task[2] %}-completed{% endif %}"
+          >{{ task[0] }}</span
+        >
+        <button class="delete-btn" data-task-id="{{ task[1] }}">Delete</button>
+        {% if not task[2] %}
+        <button class="complete-btn" data-task-id="{{ task[1] }}">
+          Complete
+        </button>
+        {% endif %}
+      </li>
+
+      {% endfor %}
     </ul>
 
     <form action="/add_task" method="post">
-        <input type="text" name="task" required>
-        <button type="submit">Add Task</button>
+      <input type="text" name="task" required />
+      <button type="submit">Add Task</button>
     </form>
 
     <a href="/logout">Logout</a>
-</body>
+  </body>
 </html>
-
