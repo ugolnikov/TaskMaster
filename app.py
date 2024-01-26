@@ -3,7 +3,7 @@ import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
+app.secret_key = 'ugol'
 
 # Создаем подключение к базе данных SQLite
 conn = sqlite3.connect('tasks.db', check_same_thread=False)
