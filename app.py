@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -43,7 +43,8 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        hashed_password = generate_password_hash(password, method='sha256')
+        hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
+
 
         cursor.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, hashed_password))
         conn.commit()
@@ -62,8 +63,10 @@ def login():
         user = cursor.fetchone()
 
         if user and check_password_hash(user[2], password):
-            session['user_id'] = user[0]
+            session['user_id'] = user[0]  # Устанавливаем сессионную переменную user_id
             return redirect(url_for('index'))
+        else:
+            flash('Invalid username or password', 'error')  # Вы можете использовать Flask flash для вывода ошибки
 
     return render_template('login.html')
 
