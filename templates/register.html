@@ -1,24 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register</title>
+    <link rel="stylesheet" href="static/style.css" />
+    <title>TaskMaster - Регистрация</title>
+    <link rel="icon" type="image/x-icon" href="static/1.ico" />
   </head>
   <body>
-    <h1>Register</h1>
-
-    <form action="/register" method="post">
-      <label for="username">Username:</label>
-      <input type="text" name="username" required />
-
-      <label for="password">Password:</label>
-      <input type="password" name="password" required />
-
-      <button type="submit">Register</button>
-    </form>
-
-    <p>Already have an account? <a href="/login">Login</a></p>
+    <div class="logo">
+      <img src="static/logo.png" class="logo" /> TaskMaster
+    </div>
+    <video autoplay muted loop id="myVideo">
+      <source src="static/bg_video.mp4" type="video/mp4" />
+    </video>
+    <hr style="min-width: 99%" />
+    <div class="form">
+      <form action="/register" method="post">
+        <div style="justify-content: center">
+          <div class="input">
+            <label for="username">Логин</label>
+            <input
+              type="text"
+              name="username"
+              class="mid"
+              required
+              placeholder="Введите логин..."
+            />
+          </div>
+          <div class="input">
+            <label for="password">Пароль</label>
+            <input
+              type="password"
+              name="password"
+              class="mid"
+              required
+              placeholder="Введите пароль..."
+            />
+          </div>
+        </div>
+        <div class="buttons">
+          <button type="submit" class="btn">Зарегистрироваться</button>
+        </div>
+      </form>
+      <p class="end">
+        Уже зарегистрированы? <a href="/login">Авторизоваться</a>
+      </p>
+    </div>
   </body>
 </html>
