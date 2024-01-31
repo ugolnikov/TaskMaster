@@ -51,12 +51,27 @@
           }
         });
       });
+      $(document).ready(function () {
+        var currentDate = new Date();
+        var options = {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        };
+        var formattedDate = currentDate.toLocaleDateString("ru-RU", options);
+
+        $("#current-date").text(formattedDate);
+      });
     </script>
   </head>
   <body>
     <video autoplay muted loop id="myVideo" style="z-index: -110000">
       <source src="/static/bg_video.mp4" type="video/mp4" />
     </video>
+
+    <div id="current-date"></div>
+
     <div class="left">
       <h1>Список дел:</h1>
       <br />
