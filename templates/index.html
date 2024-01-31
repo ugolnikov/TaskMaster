@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Task List</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="/static/style-index.css" />
     <script>
       $(document).ready(function () {
         $(".delete-btn").click(function () {
@@ -34,7 +35,7 @@
           var taskId = $(this).data("task-id");
           var taskTextElement = $(this).find(".task-text");
 
-          var editedTask = prompt("Edit Task", taskTextElement.text());
+          var editedTask = prompt("Изменение дела:", taskTextElement.text());
           if (editedTask !== null) {
             $.post(
               "/edit_task/" + taskId,
@@ -49,30 +50,64 @@
     </script>
   </head>
   <body>
-    <h1>Task List</h1>
+    <video autoplay muted loop id="myVideo" style="z-index: -110000">
+      <source src="/static/bg_video.mp4" type="video/mp4" />
+    </video>
+    <div class="left">
+      <h1>Список дел:</h1>
+      <br />
 
-    <ul>
-      {% for task in tasks %}
-      <li class="task-item" data-task-id="{{ task[1] }}">
-        <span class="task-text{% if task[2] %}-completed{% endif %}"
-          >{{ task[0] }}</span
-        >
-        <button class="delete-btn" data-task-id="{{ task[1] }}">Delete</button>
-        {% if not task[2] %}
-        <button class="complete-btn" data-task-id="{{ task[1] }}">
-          Complete
-        </button>
-        {% endif %}
-      </li>
+      <ul>
+        {% for task in tasks %}
+        <div class="task-item" data-task-id="{{ task[1] }}">
+          <span class="task-text{% if task[2] %}-completed{% endif %} border"
+            >{{ task[0] }}</span
+          >
+          {% if not task[2] %}
+          <button class="complete-btn" data-task-id="{{ task[1] }}">
+            Выполнить
+          </button>
+          {% endif %}
+          <button class="delete-btn" data-task-id="{{ task[1] }}">
+            Удалить
+          </button>
+        </div>
 
-      {% endfor %}
-    </ul>
+        {% endfor %}
+      </ul>
 
-    <form action="/add_task" method="post">
-      <input type="text" name="task" required />
-      <button type="submit">Add Task</button>
-    </form>
+      <form action="/add_task" method="post">
+        <input type="text" name="task" required placeholder="Задача..." />
+        <button type="submit" id="add-task">Добавить</button>
+      </form>
 
-    <a href="/logout">Logout</a>
+      <!-- <a href="/logout">Logout</a> -->
+      <div class="log-cont">
+        <button onclick="location.href='/logout'" id="logout">Выход</button>
+      </div>
+
+      <p
+        style="
+          margin-top: 5rem;
+          padding: 1rem;
+          background-color: rgba(255, 255, 255, 20%);
+          color: rgba(0, 0, 0, 0.753);
+          border-radius: 0.5rem;
+        "
+      >
+        Заметка: для редактирования дела нажми дважды на ЛКМ
+      </p>
+    </div>
+    <div class="right">
+      <script
+        src="https://static.elfsight.com/platform/platform.js"
+        data-use-service-core
+        defer
+      ></script>
+      <div
+        class="elfsight-app-5c1a441e-2115-4648-9dd1-b889d7d10d88"
+        data-elfsight-app-lazy
+      ></div>
+    </div>
   </body>
 </html>

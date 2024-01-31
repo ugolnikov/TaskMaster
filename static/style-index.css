@@ -1,0 +1,85 @@
+*,
+body {
+  font-family: Tahoma;
+  margin: 0;
+  padding: 0;
+  transition: 0.3s ease all;
+}
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+/* СУПЕР ВАЖНО */
+.task-text-completed {
+  /* text-decoration: line-through; */
+  color: rgb(11, 138, 0);
+}
+.task-text-completed::before {
+  content: "✅ ";
+  text-decoration: none;
+}
+body {
+  display: flex;
+  vertical-align: middle;
+}
+.left,
+.right {
+  display: block;
+  margin: auto;
+  margin-top: 10%;
+}
+button {
+  padding: 1rem;
+}
+input {
+  font-size: 1rem;
+  padding: 0.5rem;
+  margin-bottom: 2rem;
+  border-radius: 0.3rem;
+  border: 1px solid black;
+}
+textarea:focus,
+input:focus {
+  outline: none;
+}
+#logout {
+  margin-top: 2rem;
+  background-color: rgb(0, 62, 65);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: large;
+}
+#logout:hover {
+  background-color: white;
+  color: black;
+  /* border: 1px solid black; */
+  font-size: larger;
+}
+#add-task {
+  font-weight: 900;
+  cursor: cell;
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+.border {
+  background-color: rgba(255, 255, 255, 30%);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+}
+.task-item {
+  margin-bottom: 2rem;
+}
+ul div button {
+  padding: 10px;
+}
+.log-cont {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+}
